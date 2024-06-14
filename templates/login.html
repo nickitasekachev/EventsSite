@@ -1,0 +1,36 @@
+{% extends "index.htm" %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+        <form method="post" class="text-center">
+          <div class="form-group">
+              <label for="name">Имя пользователя:</label>
+              <input
+                  type="text"
+                  class="form-control mt-2"
+                  id="name"
+                  name="name"
+                  placeholder="Введите имя пользователя"
+              />
+          </div>
+          <div class="form-group mt-3">
+              <label for="password">Пароль:</label>
+              <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Введите пароль"
+              />
+          </div>
+          <div class="form-group mt-2 d-flex justify-content-between">
+              <a href="{{ url_for('register') }}" class="link btn btn-success">Регистрация</a>
+              <button type="submit" class="btn btn-success">Войти</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

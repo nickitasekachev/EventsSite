@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .scrollable-cards {
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .scrollable-cards::-webkit-scrollbar {
+            display: none;
+        }
+        .card {
+            border: none;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05); /* Увеличение при наведении */
+        }
+        .image-right {
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-success" data-bs-theme="danger">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav flex-grow-1 justify-content-evenly">
+                        <li class="nav-item">
+                            <a class="nav-link active ms-3 text-light" aria-current="page" href="{{url_for('MainPage')}}">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active ms-3 text-light" aria-current="page" href="{{url_for('SchedulePage')}}">Расписание</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active ms-3 text-light" aria-current="page" href="{{url_for('ParticipantsPage')}}">Участники</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active ms-3 text-light" aria-current="page" href="{{url_for('SponsorsPage')}}">Спонсоры</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active ms-3 text-light" aria-current="page" href="{{url_for('ContactInformationPage')}}">Контактная информация</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link ms-2 active link-danger text-light" aria-current="page" href="{{ url_for('logout') }}">Выход</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link ms-2 active link-danger text-light" aria-current="page" href="{{url_for('login')}}">Войти</a>
+                        </li>
+                    {% endif %}
+                        {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-center" href="{{url_for('MyEventsPage')}}">{{ current_user.name }}</a>
+                    </li>
+                    {% endif %}
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% block content %} {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "index.htm" %}
+
+{% block content %}
+<div class="container-fluid align-self-center mt-5 mb-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-7 text-center">
+            <div class="info">
+                <h1>{{card.name}}</h1>
+                <h4>{{card.description}}</h4>
+                <span class="fw-bold">Кпп: {{card.kpp}}</span>
+                <p class="fw-bold">Инн: {{card.inn}}</p>
+            </div>
+        </div>
+        <div class="col-sm-5 text-center">
+            <div class="image-container" style="height: auto;">
+                <img src={{url_for("static",filename = card.logo)}} style="max-width: 100%; height: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-sm-8 text-center">
+            <h3 class="mb-4">Адрес офиса</h3>
+            <iframe src={{card.office_address}} width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

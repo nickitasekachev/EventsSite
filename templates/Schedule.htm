@@ -1,0 +1,50 @@
+{% extends "index.htm" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Расписание</h1>
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-4 text-center">
+            <form method="GET" action="{{ url_for('SchedulePage') }}">
+                <h2>Выберите дату:</h2>
+                <input type="date" name="date" class="form-control mb-2">
+                <input class="btn btn-success" type="submit" value="Найти">
+            </form>
+        </div>
+    </div>
+    {% if information %}
+        <!-- Карточки мероприятий -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="row gy-4">
+                    {% for info in information %}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="card h-100">
+                            <a href='{{ url_for("EventById", id=info.id) }}'>
+                                <img src={{url_for("static",filename = info.photo)}} alt="" class="card-img-top">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title text-left fw-bold">{{ info.title }}</h5>
+                                <p class="card-text fw-light">{{ info.date_time }}</p>
+                                <p class="card-text fst-italic">{{ info.description }}</p>
+                                <a href="{{ url_for('EventById', id=info.id) }}" class="btn btn-success">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="alert alert-warning text-center" role="alert">
+                    На выбранную дату нет назначенных мероприятий.
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

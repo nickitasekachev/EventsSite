@@ -1,0 +1,36 @@
+{% extends "index.htm" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Контактная информация</h1>
+    <div class="row">
+        {%for info in information%}
+        <div class="col-md-6 ">
+            <h3>Телефон:</h3>
+            <ul>
+                <li>Ответственного лица: {{info.main_phone}}</li>
+            </ul>
+            <h3>Электронная почта:</h3>
+            <ul>
+                <li>Основной: {{info.email}}</li>
+            </ul>
+            <h3>Адрес организации:</h3>
+            <!-- Возможно, добавление карты с точкой на карте -->
+            <iframe src="{{info.address}}" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        </div>
+        <div class="col-md-6">
+            <h3>Ответственная организация:</h3>
+            <p>{{info.name}}</p>
+            <h3>Социальные сети:</h3>
+            <ul>
+                <li>Instagram: {{info.social_link_1}}</li>
+                <li>Facebook: {{info.social_link_2}}</li>
+                <li>Twitter: {{info.social_link_3}}</li>
+            </ul>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{% endblock %}

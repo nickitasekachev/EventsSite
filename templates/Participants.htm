@@ -1,0 +1,25 @@
+{% extends "index.htm" %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <h2 class="text-center  mb-4">Участники мероприятий</h2>
+    <div class="row justify-content-center">
+        <div class="col-sm-9 scrollable-cards">
+            <div class="row gy-4">
+                {% for part in participants%}
+                <div class="col-sm-3">
+                    <div class="card h-100">
+                        <img src={{url_for("static",filename = part.photo)}} alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title text-left fw-bold">{{part.full_name}}</h5>
+                            <p class="card-text fw-light">{{part.position_and_company}}</p>
+                           <a href="#">{{part.phone_number}}</a>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

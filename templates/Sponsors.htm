@@ -1,0 +1,23 @@
+{% extends "index.htm" %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <h2 class="text-center  mb-4">Спонсоры</h2>
+    <div class="row justify-content-center">
+        <div class="col-sm-9 scrollable-cards">
+            <div class="row gy-4">
+                {%for spons in sponsors%}
+                <div class="col-sm-3">
+                    <div class="card h-100">
+                        <a href='{{url_for("SponsorById", id = spons.id)}}'> <img src={{url_for("static",filename = spons.logo)}} alt="" class="card-img-top"></a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center fw-bold">{{spons.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
